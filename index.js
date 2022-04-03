@@ -4,24 +4,10 @@ const exit = document.querySelector('.exit');
 
 let pablo = false;
 let counter = 0;
-// popup.style.display = 'none';
 let relative = 'relative';
 
-const checkValue = () => {
-    let emailValue = email.value;
-    if (emailValue == 'san') {
-       const inter = setInterval(function() {
-            counter++;
-            popupCreator();
-            console.log(counter);
-            if(counter == 10) {
-                clearInterval(inter);
-            }            
-        }, 1000);
-}
-}
-
 const popupCreator = () => {
+    counter++;
     const pops = document.createElement('div');
     const exit = document.createElement('div');
     const text = document.createElement('div');
@@ -35,14 +21,11 @@ const popupCreator = () => {
     pops.appendChild(text);
 }
 
-const showPopup = () => {
-    pablo = true;
-    popup.style.display = 'flex';
-}
-
 const hidePopup = () => {
     popup.style.display = 'none';
 }
+hidePopup();
+
 
 email.addEventListener('keyup', checkValue);
 exit.addEventListener('click', hidePopup);
