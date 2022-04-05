@@ -27,8 +27,7 @@ const popupCreator = () => {
     pops.appendChild(exit);
     pops.appendChild(text);
     pops.style.position = 'absolute';
-    pops.style.left = `${counter+=10}px`;
-    pops.style.top = `${counter+=10}px`;
+    counter+=10;
     if(counter > 100) {
     pops.style.top = `${Math.floor(Math.random() * width)}px`;
     pops.style.left = `${Math.floor(Math.random() * width)}px`;
