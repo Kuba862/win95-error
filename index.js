@@ -18,14 +18,28 @@ const popupCreator = () => {
     const pops = document.createElement('div');
     const exit = document.createElement('div');
     const text = document.createElement('div');
+    const topBlueLine = document.createElement('div');
+    const errorText = document.createElement('span');
+    const textBox = document.createElement('div');
+    const redX = document.createElement('div');
+
+    topBlueLine.classList.add('top_blue_line');
+    errorText.classList.add('text');
+    textBox.classList.add('text_box');
+    redX.classList.add('x');
     pops.classList.add('popup');
     pops.classList.add('next');
     exit.classList.add('exit');
     text.classList.add('popup_text');
-    text.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum itaque quidem consequuntur praesentium consectetur debitis suscipit odit? Distinctio deserunt ea, rerum hic repudiandae recusandae, at quidem minus fugit vero quam?';
+    text.innerHTML = 'Try to "Fix" this error.';
+    errorText.innerHTML = 'error';
+    pops.appendChild(topBlueLine);
+    pops.appendChild(textBox);
     document.body.insertBefore(pops, popup);
-    pops.appendChild(exit);
-    pops.appendChild(text);
+    topBlueLine.appendChild(errorText);
+    topBlueLine.appendChild(exit);
+    textBox.appendChild(redX);
+    textBox.appendChild(text);
     pops.style.position = 'absolute';
     counter+=10;
     if(counter > 100) {
@@ -34,17 +48,40 @@ const popupCreator = () => {
     }
 }
 
+function welcome() {
+    let popupCounter = 4;
+    const welcomeBox = document.createElement('div');
+    const welcomeText = document.createElement('h1');
+    document.body.appendChild(welcomeBox);
+    welcomeBox.appendChild(welcomeText);
+    document.querySelector('.go').style.display = 'none';
+    lessPopupCounter = setInterval(function() {
+        popupCounter--;
+        welcomeText.innerHTML = `Hello ${email.value.toUpperCase()}<br/>I know you don't like popups so it will disappear in ${popupCounter} seconds...`;
+        (popupCounter === 0) ? clearInterval(lessPopupCounter) : {};
+    }, 1000);
+    setTimeout(function() {
+        document.querySelector('.popup').style.display = 'none';
+        document.querySelector('#email_input').style.display = 'none';
+        document.body.style.backgroundColor = 'green';
+        welcomeText.innerHTML = `and that's it :)`;
+    }, 5000);
+}
 
 function showPopup() {
-    if (email.value == 'a') {
+    if (email.value == 'pablo') {
         inter = setInterval(function() {
             counter++;
+            document.querySelector('#email_input').style.display = 'none';
+            document.querySelector('.go').style.display = 'none';
             popupCreator();
             if(counter > 10000) {
                 clearInterval(inter);
             }
-        }, 1);
-        
+        }, 1); 
+    }
+    if (email.value !== 'psantana@citizengo.net') {
+        document.querySelector('.go').addEventListener('click', welcome);
     }
 }
 
